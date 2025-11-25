@@ -1,4 +1,4 @@
-const {getMoviesByDirector, getAllMovies, addMovie, getMovieById, deleteMovieById, updateMovieById} = require('../Data/FilmDatabase');
+const {getMoviesByDirector, getAllMovies, addMovie, getMovieById, deleteMovieById, updateMovieById, getMoviesByYear} = require('../Data/FilmDatabase');
  
 // Get all movies
 const fetchAllMovies = async (req, res) => {
@@ -23,6 +23,15 @@ const fetchMovieById = async (req, res) => {
     }
 };
  
+// Get movies by year
+const fetchMoviesByYear = async (req, res) => {
+    try {
+        const movie = await getMoviesByYear(req.params.year);
+        res.status(200).json({success: true, data: movie});
+    } catch (error) {
+        res.status(500).json({ success: false, error: 'Failed to fetch movies by year' });
+    }
+};
 // Get movies by director
 const fetchMoviesByDirector = async (req, res) => {
     try {
@@ -79,6 +88,7 @@ const removeMovieById = async (req, res) => {
 module.exports = {
     fetchAllMovies,
     fetchMovieById,
+    fetchMoviesByYear,
     fetchMoviesByDirector,
     createMovie,
     modifyMovieById,

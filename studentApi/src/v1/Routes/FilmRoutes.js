@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchAllMovies, fetchMovieById, fetchMoviesByDirector, createMovie, modifyMovieById, removeMovieById } = require('../Controller/FilmController');
+const { fetchAllMovies, fetchMovieById, fetchMoviesByDirector, createMovie, modifyMovieById, removeMovieById, fetchMoviesByYear } = require('../Controller/FilmController');
  
 const router = express.Router();
  
@@ -10,6 +10,9 @@ router.get('/', fetchAllMovies);
 
 // dette henter en film basert på ID
 router.get('/:id', fetchMovieById);
+
+// dette henter filmer basert på år
+router.get('/year/:year', fetchMoviesByYear);
 
 // dette henter filmer basert på regissør
 router.get('/director/:director', fetchMoviesByDirector);

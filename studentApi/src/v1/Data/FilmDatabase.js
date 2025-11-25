@@ -25,6 +25,13 @@ const getMovieById = (id) => {
     if (isNaN(id)) return null; // Return null if id is not a number
     return movies.find((movie) => movie.id === id); // // Ensure the id is a number with parseInt
 }
+
+// GET movie by year
+const getMoviesByYear = (year) => {
+    year = parseInt(year);
+    if (isNaN(year)) return []; // Return empty array if year is not a number
+    return movies.filter((movie) => movie.year === year);
+}
  
 // GET movie by director
 const getMoviesByDirector = (director) => {
@@ -68,5 +75,6 @@ module.exports = {
     addMovie,
     getMovieById,
     deleteMovieById,
-    updateMovieById
+    updateMovieById,
+    getMoviesByYear
 }
